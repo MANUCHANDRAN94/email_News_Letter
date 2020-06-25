@@ -4,7 +4,7 @@ const https = require("https");
 const { post } = require("request");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 const host = "127.0.0.1";
 
 app.use(express.static("public"));
@@ -63,8 +63,8 @@ app.post("/failure",  function(req,res){
     res.redirect("/");
 })
 
-app.listen(PORT, host, () => {
-  console.log(`server is running at http://${host}:${PORT}/`);
+app.listen(process.env.PORT || 3000 , () => {
+//   console.log(`server is running at http://${host}:${PORT}/`);
 });
 
 //api key cb5098b027e02a45deee910a84bd3874-us10
