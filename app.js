@@ -64,7 +64,7 @@ app.post("/failure",  function(req,res){
 })
 
 app.listen(Port , host , () => {
-   console.log(`server is running at http://${host}:${PORT}/`);
+   console.log(`server is running at http://${host}:${Port}/`);
 });
 
 //api key cb5098b027e02a45deee910a84bd3874-us10
