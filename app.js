@@ -1,10 +1,10 @@
+require('dotenv').config()
 const express = require("express");
-const request = require("request");
+//const request = require("request");
 const https = require("https");
-const { post } = require("request");
+//const { post } = require("request");
 
 const app = express();
-//const Port = process.env.PORT || 3000;
 const host = "127.0.0.1";
 
 app.use(express.static("public"));
@@ -33,29 +33,32 @@ app.post("/signup", function(req,res){
     }
     var jsonData = JSON.stringify(data);
 
-    const url = 'https://us10.api.mailchimp.com/3.0/lists/e6ce5bef97';
+    const url = process.env.URLL;
 
     const options = {
         method :"POST",
-        auth: "manu:cb5098b027e02a45deee910a84bd3874-us10"
+        auth: process.env.AUTHR
 
     }
     
-    const request = https.request(url , options , function(response){
+     const request1 = https.request(url , options , function(response){
         if(response.statusCode===200){
             res.sendFile(__dirname + "/success.html")
         }
         else {
             res.sendFile(__dirname + "/failure.html")
-        }
-        response.on("data", function (data){
-            console.log(JSON.parse(data));
+        } 
+        
+        
+         response.on("data", function (data){
+        //     console.log(JSON.parse(data));
             
-        })
+         })
 
     })
-    request.write(jsonData);
-    request.end();
+    
+    request1.write(jsonData);
+    request1.end();
     
 })
 
@@ -67,6 +70,3 @@ app.listen(process.env.PORT || 3000 , () => {
    console.log(`server is running at http://${host}:3000/`);
 });
 
-//api key cb5098b027e02a45deee910a84bd3874-us10
-
-// listid e6ce5bef97
